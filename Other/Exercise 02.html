@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<body style="background-color:#ffffff;">
+    <table style="width:50%;margin-left:auto;margin-right:auto;background-color:#cccccc;">
+
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <div class="navbar">
+        <a href="#section1"><i class="fa fa-fw fa-home"></i>Home</a>
+        <a href="https://moodle.concordia.ca/moodle/course/view.php?id=149885">Calendar</a>
+        <a href="#section1"></i>Reflections</a>
+        <div class="dropdown">
+          <button class="dropbtn">Exercises
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="Exercise 01.html">Exercise 01</a>
+            <a href="Exercise 02.html">Exercise 02</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Presentation
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="#">Presentation (SLIDES)</a>
+            <a href="#">Presentation (DOC)</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Projects
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="Proposal.html">Proposal</a>
+            <a href="Prototype.html">Prototype (LIVE)</a>
+            <a href="#">Prototype (DOC)</a>
+            <a href="#">Final (LIVE)</a>
+            <a href="#">Final (DOC)</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Games
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="https://jacko-2026.github.io/CART-253/exercises/dodge-em/">Dodge Em</a>
+            <a href="https://jacko-2026.github.io/CART-253/exercises/love-actually/">Love Actually</a>
+            <a href="https://jacko-2026.github.io/CART-253/projects/project1/">Toader</a>
+            <a href="https://jacko-2026.github.io/CART-263/exercises/raving-redactionist-plus-plus/">Raving Redactionist</a>
+            <a href="https://jacko-2026.github.io/CART-263/exercises/haiku-generator-plus-plus/">Haiku Generator</a>
+            <a href="https://jacko-2026.github.io/CART-263/exercises/bubble-popper-plus-plus/">Bubble Popper</a>
+            <a href="https://jacko-2026.github.io/CART-263/exercises/spy-profile-generator-plus/">Spy Profile</a>
+            <a href="https://jacko-2026.github.io/CART-253/projects/project2/final/">Lumberjack</a>
+            <a href="https://jacko-2026.github.io/CART-263/projects/project2/final/">Galactic Pawn Shop</a>
+          </div>
+        </div>
+      </div>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Exercise-02: ONE WEEK SCHEDULE</title>
+    <style>
+        body {
+          font-family: Arial, Helvetica, sans-serif;
+        }
+    
+        * {
+          box-sizing: border-box;
+        }
+    
+        .open-button {
+          background-color: #555;
+          color: white;
+          padding: 16px 20px;
+          border: none;
+          cursor: pointer;
+          opacity: 0.8;
+          position: fixed;
+          bottom: 23px;
+          right: 28px;
+          width: 280px;
+        }
+    
+        .chat-popup {
+          display: none;
+          position: fixed;
+          bottom: 0;
+          right: 15px;
+          border: 3px solid #f1f1f1;
+          z-index: 9;
+        }
+    
+        .form-container {
+          max-width: 300px;
+          padding: 10px;
+          background-color: white;
+        }
+    
+        .form-container textarea {
+          width: 100%;
+          padding: 15px;
+          margin: 5px 0 22px 0;
+          border: none;
+          background: #f1f1f1;
+          resize: none;
+          min-height: 200px;
+        }
+    
+        .form-container textarea:focus {
+          background-color: #ddd;
+          outline: none;
+        }
+    
+        .form-container .btn {
+          background-color: #04AA6D;
+          color: white;
+          padding: 16px 20px;
+          border: none;
+          cursor: pointer;
+          width: 100%;
+          margin-bottom: 10px;
+          opacity: 0.8;
+        }
+    
+        .form-container .cancel {
+          background-color: red;
+        }
+    
+        .form-container .btn:hover,
+        .open-button:hover {
+          opacity: 1;
+        }
+    
+        table {
+          width: 600px;
+          margin-left: auto;
+          margin-right: auto;
+          border: 2px solid black;
+          border-radius: 20px;
+        }
+    
+        h {
+          border-style: groove;
+          color: GhostWhite;
+        }
+    
+        pic {
+          border-style: dotted;
+        }
+    
+        body {
+          font-family: "Lato", sans-serif;
+        }
+    
+        @media screen and (max-height: 450px) {
+          .sidenav {
+            padding-top: 15px;
+          }
+    
+          .sidenav a {
+            font-size: 18px;
+          }
+        }
+    
+        .navbar {
+          overflow: hidden;
+          background-color: #37393e;
+        }
+    
+        .navbar a {
+          float: left;
+          font-size: 16px;
+          color: white;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+        }
+    
+        .dropdown {
+          float: left;
+          overflow: hidden;
+        }
+    
+        .dropdown .dropbtn {
+          font-size: 16px;
+          border: none;
+          outline: none;
+          color: white;
+          padding: 14px 16px;
+          background-color: inherit;
+          font-family: inherit;
+          margin: 0;
+        }
+    
+        .navbar a:hover,
+        .dropdown:hover .dropbtn {
+          background-color: red;
+        }
+    
+        .dropdown-content {
+          display: none;
+          position: absolute;
+          background-color: #f9f9f9;
+          min-width: 160px;
+          box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+          z-index: 1;
+        }
+    
+        .dropdown-content a {
+          float: none;
+          color: black;
+          padding: 12px 16px;
+          text-decoration: none;
+          display: block;
+          text-align: left;
+        }
+    
+        .dropdown-content a:hover {
+          background-color: #ddd;
+        }
+    
+        .dropdown:hover .dropdown-content {
+          display: block;
+        }
+      </style>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+
+function myFunction1() {
+  var x = document.getElementById("snackbar1");
+  x.className = "show";
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+function myFunction2() {
+  var x = document.getElementById("snackbar2");
+  x.className = "show";
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+function myFunction3() {
+  var x = document.getElementById("snackbar3");
+  x.className = "show";
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+function myFunction4() {
+  var x = document.getElementById("snackbar4");
+  x.className = "show";
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+function myFunction5() {
+  var x = document.getElementById("snackbar5");
+  x.className = "show";
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+function myFunction6() {
+  var x = document.getElementById("snackbar6");
+  x.className = "show";
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+</script>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+#snackbar1 {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+}
+#snackbar2 {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+}
+#snackbar3 {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+}
+#snackbar4 {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+}
+#snackbar5 {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+}
+#snackbar6 {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+}
+
+#snackbar1.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+#snackbar2.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+#snackbar3.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+#snackbar4.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+#snackbar5.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+#snackbar6.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;} 
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;} 
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+</style>
+</head>
+<body>
+
+<h2>EXERCISE 02</h2>
+<br>Type something in the input field to search through the data:</br>  
+<input id="myInput" type="text" placeholder="Search..">
+<br><br>
+
+<table>
+  <thead>
+  <tr>
+    <th>DATE</th>
+    <th>WORK</th>
+    <th>STEPS</th>
+  </tr>
+  </thead>
+  <tbody id="myTable">
+  <tr>
+    <td><button onclick="myFunction1()">MONDAY Oct 17, 2022</button></td>
+    <td><b>NONE</b> </td>
+    <td>4,393 steps</td>
+  </tr>
+  <tr>
+    <td>TUESDAY Oct 18, 2022</td>
+    <td><b>NONE</b></td>
+    <td><b>NONE</b></td>
+  </tr>
+  <tr>
+    <td><button onclick="myFunction2()">WEDNESDAY Oct 19, 2022</button></td>
+    <td><b>NONE</b> </td>
+    <td>3,988 steps</td>
+  </tr>
+  <tr>
+    <td>THURSDAY Oct 20, 2022</td>
+    <td><button onclick="myFunction3()"><b>Bus</b></button></td>
+    <td>7,322 steps</td>
+  </tr>
+  <tr>
+    <td><button onclick="myFunction4()">FRIDAY Oct 21, 2022</button></td>
+    <td><button onclick="myFunction5()"><b>Dishwasher +Bus</b></button></td>
+    <td>9,672 steps</td>
+  </tr>
+  <tr>
+    <td>SATURDAY Oct 22, 2022</td>
+    <td><button onclick="myFunction6()"><b>Dishwasher +Bus</b></button></td>
+    <td>5,231 steps</td>
+  </tr>
+  <tr>
+    <td>SUNDAY Oct 23, 2022</td>
+    <td><b>NONE</b></td>
+    <td>653 steps</td>
+  </tr>
+  </tbody>
+
+<div id="snackbar1"><i>CART-345 1:30-5:30pm EST</i></div>
+<div id="snackbar2"><i>CART-351 8:30am-12:30pm EST</i></div>
+<div id="snackbar3"><i>Tips Earned: 60$</i></div>
+<div id="snackbar4"><i>CART-361 8:30am-12:30pm EST</i></div>
+<div id="snackbar5"><i>Tips Earned: 60$</i></div>
+<div id="snackbar6"><i>Tips Earned: 80$(As a future IOU)</i></div>
+</table>
+
+</body>
+</html>
+
+<a href="assets/Exercise 02.html.zip" download>
+  <img src="assets/download.png" alt="Image Not Found" width="142" height="142">
+</a>
