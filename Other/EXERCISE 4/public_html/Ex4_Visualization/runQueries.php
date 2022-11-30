@@ -45,22 +45,22 @@ if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET["select-query"]))
 
     if($_GET["select-query"]==="three"){
       //TO IMPLEMENT:
-        $selectedQuery = "";
+        $selectedQuery = "SELECT * FROM dataStuff WHERE moods = positive_moods";
     }
 
     if($_GET["select-query"]==="four"){
       //TO IMPLEMENT:
-        $selectedQuery = "";
+        $selectedQuery = "SELECT * FROM dataStuff ORDER BY eventID";
       }
 
     if($_GET["select-query"]==="five"){
       //TO IMPLEMENT:
-      $selectedQuery = "";
+      $selectedQuery = "SELECT * FROM dataStuff WHERE days = Monday, Tuesday ORDER BY event_affect_strength";
     }
 
     else if($_GET["select-query"]==="six"){
       //TO IMPLEMENT:
-      $selectedQuery = "";
+      $selectedQuery = "SELECT * FROM dataStuff WHERE start_mood, after_mood = negative_moods ORDER BY weather";
   }
 
   if($selectedQuery!==""){
