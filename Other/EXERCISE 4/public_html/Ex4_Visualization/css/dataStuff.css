@@ -1,0 +1,81 @@
+/* PLEASE DO NOT CHNAGE THE EXISTING STYLES - JUST ADD ... FOR YOUR VISUALIZATIONS **/
+body,html{
+  font-family: 'Roboto', sans-serif;
+  margin:0;
+  padding:0;
+  background:rgba(51,102,255,.2);
+  height:100%;
+}
+
+header{
+  text-align: center;
+  color:rgba(51,102,255,.6);
+  padding:10px;
+}
+
+footer{
+padding:0;
+margin:0;
+padding:10px;
+color:rgba(51,102,255,.6);
+text-align:center;
+
+}
+
+#parent-wrapper{
+background:rgba(51,102,255,.2);
+margin:0;
+padding:0;
+width:100vw;
+/* min-width:1500px; */
+overflow: hidden;
+margin-top:20px;
+}
+
+#childOne{
+margin:0;
+margin-left:20%;
+margin-top:20px;
+width:80%;
+position:relative;
+padding:15px;
+}
+
+#Ex4_title{
+margin-left:20%;
+color:white;
+}
+
+/* .point_two{
+background-color:white;
+width:7px;
+height:7px;
+position:absolute;
+border-radius: 3px;
+} */
+
+.point_two{
+background-color:white;
+width:10px;
+height:10px;
+position:absolute;
+border-radius: 5px;
+}
+
+.point{
+background-color:white;
+width:15px;
+height:15px;
+border-radius: 5px;
+position:absolute;
+}
+/* for dropDown*/
+.css-select{
+background: rgba(51,102,255,.6);
+width: 30%;
+margin-left:45px;
+color:white;
+font-size: 14px;
+outline:none;
+
+}
