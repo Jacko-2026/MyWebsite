@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<title>CART351 Website</title>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .open-button {
+      background-color: #555;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      opacity: 0.8;
+      position: fixed;
+      bottom: 23px;
+      right: 28px;
+      width: 280px;
+    }
+
+    .chat-popup {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      right: 15px;
+      border: 3px solid #f1f1f1;
+      z-index: 9;
+    }
+
+    .form-container {
+      max-width: 300px;
+      padding: 10px;
+      background-color: white;
+    }
+
+    .form-container textarea {
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      border: none;
+      background: #f1f1f1;
+      resize: none;
+      min-height: 200px;
+    }
+
+    .form-container textarea:focus {
+      background-color: #ddd;
+      outline: none;
+    }
+
+    .form-container .btn {
+      background-color: #04AA6D;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom: 10px;
+      opacity: 0.8;
+    }
+
+    .form-container .cancel {
+      background-color: red;
+    }
+
+    .form-container .btn:hover,
+    .open-button:hover {
+      opacity: 1;
+    }
+
+    table {
+      width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      border: 2px solid black;
+      border-radius: 20px;
+    }
+
+    h {
+      border-style: groove;
+      color: GhostWhite;
+    }
+
+    pic {
+      border-style: dotted;
+    }
+
+    body {
+      font-family: "Lato", sans-serif;
+    }
+
+    @media screen and (max-height: 450px) {
+      .sidenav {
+        padding-top: 15px;
+      }
+
+      .sidenav a {
+        font-size: 18px;
+      }
+    }
+
+    .navbar {
+      overflow: hidden;
+      background-color: #37393e;
+    }
+
+    .navbar a {
+      float: left;
+      font-size: 16px;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    .dropdown {
+      float: left;
+      overflow: hidden;
+    }
+
+    .dropdown .dropbtn {
+      font-size: 16px;
+      border: none;
+      outline: none;
+      color: white;
+      padding: 14px 16px;
+      background-color: inherit;
+      font-family: inherit;
+      margin: 0;
+    }
+
+    .navbar a:hover,
+    .dropdown:hover .dropbtn {
+      background-color: red;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      float: none;
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      text-align: left;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ddd;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .BottomNavbar {
+      overflow: hidden;
+      background-color: #333;
+      position: fixed;
+      bottom: 0;
+      width: 10%;
+    }
+
+    .BottomNavbar a {
+      float: left;
+      display: block;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+
+    .BottomNavbar a:hover {
+      background: #f1f1f1;
+      color: black;
+    }
+
+    .BottomNavbar a.active {
+      background-color: #04AA6D;
+      color: white;
+    }
+
+    .sidenav {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #37393e;
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+    }
+
+    .sidenav a {
+      padding: 8px 8px 8px 32px;
+      text-decoration: none;
+      font-size: 25px;
+      color: #f1f1f1;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .sidenav a:hover {
+      color: #818181;
+    }
+
+    .sidenav .closebtn {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      font-size: 36px;
+      margin-left: 50px;
+    }
+  </style>
+  <head>
+
+  <body style="background-color:#ffffff;">
+    <table style="width:50%;margin-left:auto;margin-right:auto;background-color:#cccccc;">
+
+      <tr>
+        <td>
+          <p style="text-align:center ; font-size: large"><b>Jack Taddeo / CART-351 Website </b></p>
+        </td>
+      </tr>
+
+      <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; OPEN</span>
+
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <div class="navbar">
+        <a href="#section1"><i class="fa fa-fw fa-home"></i>Home</a>
+        <a href="https://moodle.concordia.ca/moodle/course/view.php?id=149885">Calendar</a>
+        <a href="#section1"></i>Reflections</a>
+        <div class="dropdown">
+          <button class="dropbtn">Exercises
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="Other/Exercise 01.html">Exercise 01</a>
+            <a href="Other/Exercise 02.html">Exercise 02</a>
+            <a href="Other/Exercise 03/Exercise 03.html">Exercise 03</a>
+            <a href="Other/EXERCISE 4">Exercise 04</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Presentation
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="https://docs.google.com/presentation/d/1BuZD3GN1Abvtvaim8CKEl1dkEQzfeXzQFOc7047w3cc/edit?usp=sharing">Presentation (SLIDES)</a>
+            <a href="CART351_Presentation(MediaWiki)[DOC].pdf">Presentation (DOC)</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Projects
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="Projects/Proposal.html">Proposal</a>
+            <a href="Prototype/Prototype.html">Prototype (LIVE)</a>
+            <a href="CART351-FinalProject(Prototype).pdf" download>Prototype (DOC)</a>
+            <a href="CART351-UserTesting(Questions).pdf" download>Prototype (Questions)</a>
+            <a href="#">Final (LIVE)</a>
+            <a href="#">Final (DOC)</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Games
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="https://jacko-2026.github.io/CART-253/exercises/dodge-em/">Dodge Em</a>
+            <a href="https://jacko-2026.github.io/CART-253/exercises/love-actually/">Love Actually</a>
+            <a href="https://jacko-2026.github.io/CART-253/projects/project1/">Toader</a>
+            <a href="https://jacko-2026.github.io/CART-263/exercises/raving-redactionist-plus-plus/">Raving Redactionist</a>
+            <a href="https://jacko-2026.github.io/CART-263/exercises/haiku-generator-plus-plus/">Haiku Generator</a>
+            <a href="https://jacko-2026.github.io/CART-263/exercises/bubble-popper-plus-plus/">Bubble Popper</a>
+            <a href="https://jacko-2026.github.io/CART-263/exercises/spy-profile-generator-plus/">Spy Profile</a>
+            <a href="https://jacko-2026.github.io/CART-253/projects/project2/final/">Lumberjack</a>
+            <a href="https://jacko-2026.github.io/CART-263/projects/project2/final/">Galactic Pawn Shop</a>
+          </div>
+        </div>
+      </div>
+
+    <script>
+      function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+      }
+
+      function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+      }
+    </script>
+
+</body>
+
+</html>
