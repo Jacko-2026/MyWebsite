@@ -1,9 +1,7 @@
-canvas {
-    display: block;
-}
-
-body {
-  padding: 0;
+html, body {
   margin: 0;
-  background-color: #FFFFFF;
+  padding: 0;
+}
+canvas {
+  display: block;
 }
