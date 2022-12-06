@@ -1,41 +1,533 @@
 <!DOCTYPE html>
 <html>
+<title>CART351 Website</title>
+
 <head>
-<style>
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  width: 200px;
-  background-color: #f1f1f1;
-  border: 1px solid #555;
-}
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
-li a {
-  display: block;
-  color: #000;
-  padding: 8px 16px;
-  text-decoration: none;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-li {
-  text-align: center;
-  border-bottom: 1px solid #555;
-}
+    .open-button {
+      background-color: #555;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      opacity: 0.8;
+      position: fixed;
+      bottom: 23px;
+      right: 28px;
+      width: 280px;
+    }
 
-li:last-child {
-  border-bottom: none;
-}
+    .chat-popup {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      right: 15px;
+      border: 3px solid #f1f1f1;
+      z-index: 9;
+    }
 
-li a.active {
-  background-color: #04AA6D;
-  color: white;
-}
+    .form-container {
+      max-width: 300px;
+      padding: 10px;
+      background-color: white;
+    }
 
-li a:hover:not(.active) {
-  background-color: #555;
-  color: white;
-}
-</style>
-</head>
-<body>
+    .form-container textarea {
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      border: none;
+      background: #f1f1f1;
+      resize: none;
+      min-height: 200px;
+    }
+
+    .form-container textarea:focus {
+      background-color: #ddd;
+      outline: none;
+    }
+
+    .form-container .btn {
+      background-color: #04AA6D;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom: 10px;
+      opacity: 0.8;
+    }
+
+    .form-container .cancel {
+      background-color: red;
+    }
+
+    .form-container .btn:hover,
+    .open-button:hover {
+      opacity: 1;
+    }
+
+    table {
+      width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      border: 2px solid black;
+      border-radius: 20px;
+    }
+
+    h {
+      border-style: groove;
+      color: GhostWhite;
+    }
+
+    pic {
+      border-style: dotted;
+    }
+
+    body {
+      font-family: "Lato", sans-serif;
+    }
+
+    @media screen and (max-height: 450px) {
+      .sidenav {
+        padding-top: 15px;
+      }
+
+      .sidenav a {
+        font-size: 18px;
+      }
+    }
+
+    .navbar {
+      overflow: hidden;
+      background-color: #37393e;
+    }
+
+    .navbar a {
+      float: left;
+      font-size: 16px;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    .dropdown {
+      float: left;
+      overflow: hidden;
+    }
+
+    .dropdown .dropbtn {
+      font-size: 16px;
+      border: none;
+      outline: none;
+      color: white;
+      padding: 14px 16px;
+      background-color: inherit;
+      font-family: inherit;
+      margin: 0;
+    }
+
+    .navbar a:hover,
+    .dropdown:hover .dropbtn {
+      background-color: red;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      float: none;
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      text-align: left;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ddd;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .BottomNavbar {
+      overflow: hidden;
+      background-color: #333;
+      position: fixed;
+      bottom: 0;
+      width: 10%;
+    }
+
+    .BottomNavbar a {
+      float: left;
+      display: block;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+
+    .BottomNavbar a:hover {
+      background: #f1f1f1;
+      color: black;
+    }
+
+    .BottomNavbar a.active {
+      background-color: #04AA6D;
+      color: white;
+    }
+
+    .sidenav {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #37393e;
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+    }
+
+    .sidenav a {
+      padding: 8px 8px 8px 32px;
+      text-decoration: none;
+      font-size: 25px;
+      color: #f1f1f1;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .sidenav a:hover {
+      color: #818181;
+    }
+
+    .sidenav .closebtn {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      font-size: 36px;
+      margin-left: 50px;
+    }
+  </style>
+
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <p style="text-align:center; font-size:large; color:white;"><b>NOTES</b></p>
+    <a href="#section1">>Week 01</a>
+    <a href="#section2">>Week 02</a>
+    <a href="#section3">>Week 03</a>
+    <a href="#section4">>Week 04</a>
+    <a href="#section5">>Week 05</a>
+    <a href="#section6">>Week 06</a>
+    <a href="#section7">>Week 07</a>
+    <a href="#section8">>Week 08</a>
+    <a href="#section9">>Week 09</a>
+    <a href="#section10">>Week 10</a>
+    <a href="#section11">>Week 11</a>
+    <a href="#section12">>Week 12</a>
+    <a href="#section13">>Week 13</a>
+  </div>
+
+  <head>
+
+  <body style="background-color:#ffffff;">
+    <table style="width:50%;margin-left:auto;margin-right:auto;background-color:#cccccc;">
+
+      <tr>
+        <td>
+          <p style="text-align:center ; font-size: large"><b>Jack Taddeo / CART-351 Website </b></p>
+        </td>
+      </tr>
+
+      <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; OPEN</span>
+
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <div class="navbar">
+        <a href="#section1"><i class="fa fa-fw fa-home"></i>Home</a>
+        <a href="https://moodle.concordia.ca/moodle/course/view.php?id=149885">Calendar</a>
+        <div class="dropdown">
+          <button class="dropbtn">Reflections
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="CART 351_ Reflections-01.pdf" download>Reflection 01</a>
+            <a href="CART 351_ Reflections-02.pdf" download>Reflection 02</a>
+            <a href="CART 351_ Reflections-03.pdf" download>Reflection 03</a>
+            <a href="CART 351_ Reflections-04.pdf" download>Reflection 04</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Exercises
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="Other/Exercise 01.html">Exercise 01</a>
+            <a href="Other/Exercise 02.html">Exercise 02</a>
+            <a href="Other/Exercise 03/Exercise 03.html">Exercise 03</a>
+            <a href="Other/EXERCISE 4/public_html/index.html">Exercise 04</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Presentation
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="https://docs.google.com/presentation/d/1BuZD3GN1Abvtvaim8CKEl1dkEQzfeXzQFOc7047w3cc/edit?usp=sharing">Presentation (SLIDES)</a>
+            <a href="CART351_Presentation(MediaWiki)[DOC].pdf">Presentation (DOC)</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Projects
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="Projects/Proposal.html">Proposal</a>
+            <a href="Prototype/Prototype.html">Prototype (LIVE)</a>
+            <a href="CART351-FinalProject(Prototype).pdf" download>Prototype (DOC)</a>
+            <a href="CART351-UserTesting(Questions).pdf" download>Prototype (Questions)</a>
+            <a href="#">Final (LIVE)</a>
+            <a href="#">Final (DOC)</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Games
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="https://jacko-2026.github.io/CART-253/exercises/dodge-em/">Dodge Em</a>
+            <a href="https://jacko-2026.github.io/CART-253/exercises/love-actually/">Love Actually</a>
+            <a href="https://jacko-2026.github.io/CART-253/projects/project1/">Toader</a>
+            <a href="https://jacko-2026.github.io/CART-263/exercises/raving-redactionist-plus-plus/">Raving Redactionist</a>
+            <a href="https://jacko-2026.github.io/CART-263/exercises/haiku-generator-plus-plus/">Haiku Generator</a>
+            <a href="https://jacko-2026.github.io/CART-263/exercises/bubble-popper-plus-plus/">Bubble Popper</a>
+            <a href="https://jacko-2026.github.io/CART-263/exercises/spy-profile-generator-plus/">Spy Profile</a>
+            <a href="https://jacko-2026.github.io/CART-253/projects/project2/final/">Lumberjack</a>
+            <a href="https://jacko-2026.github.io/CART-263/projects/project2/final/">Galactic Pawn Shop</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="BottomNavbar">
+        <a href="#section1">Back To Top</a>
+      </div>
+
+<body style="background-color:#ffffff;">
+  <table style="width:50%;margin-left:auto;margin-right:auto;background-color:#cccccc;">
+
+    <tr style="background-color:#37393e;">
+      <td>
+        <h id="section1"><b>Week 01</b> [Wednesday| September 7th, 2022]</h>
+      </td>
+    </tr>
+
+    <tr>
+      <td><b>━━━━━━━༺Notes: "ORIENTATION"༻━━━━━━━</b>
+        <br> - Class will begin at 9:00AM instead of the original 8:30AM</br>
+        <br> - The work schedule for outside work in this class is roughly 4-8 hours</br>
+        <br> - Wednesday October 12th is now a Monday schedule</br>
+        <br> * The client is an application and or device</br>
+        <br> * A server is a machine that is a connected to the internet and waits for requests</br>
+        <br> IP: Internet Protocol (A numerical identifier for a device)</br>
+        <br> ISP: Internet Service Provider (Middle man between server & client)</br>
+        <br> DNS & Domain Name: A distributed database that keeps track of all domain names & corresponding IP Adresses</br>
+        <br> Port Number: A 16BIT interger that identifies a specific port on a server & is associated with an IP</br>
+        <br> Host: A device connected to a network/client/server/or any other device</br>
+        <br> HTTP & URL: Hyper Text Transfer Protocol - Uniform Resource Location</br>
+        <br> * A HTTP is a protocol that web browsers/servers use to communicate</br>
+        <br> * A URL identifies a paticular web resource (+ hypertext link)[UNIVERSAL]</br>
+        <br> DOM: Document Object Model</br>
+        <b>༺HOMEWORK"༻</b>
+        <br> >Join the Discord</br>
+        <br> >Individual Website (Due Week 3)</br>
+        <br> >Readings</br>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <pic>
+          <iframe src="https://giphy.com/embed/rr7AXwx8VHVdhtP4jI" width="350" height="300" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+          </a>
+        </pic>
+      </td>
+    </tr>
+
+
+    <tr style="background-color:#37393e;">
+      <td>
+        <h id="section2"><b>Week 02</b> [Wednesday| September 14th, 2022]</h>
+      </td>
+    </tr>
+
+    <tr>
+      <td><b>━━━━━━━༺Notes: "READY, STEADY" PART 1༻━━━━━━━</b>
+        <br> - Javascript Review</br>
+        <br> - Install Vsual Studio Code as the alternative to Atom (+LIVE SERVER)</br>
+        <b>༺HOMEWORK"༻</b>
+        <br> >Individual Website (Due Week 3)</br>
+        <br> >Exercise 01 (Due Week 4)</br>
+        <br> >Final Project Proposal (Due Week 5)</br>
+        <br> >Readings</br>
+        <br> >Begin discussion(s) with presentation groups</br>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <pic>
+          <img src="https://c.tenor.com/9gsZ6dapVZoAAAAC/ready-set.gif" alt="Image Not Found" width="415" height="227">
+        </pic>
+      </td>
+    </tr>
+
+
+    <tr style="background-color:#37393e;">
+      <td>
+        <h id="section3"><b>Week 03</b> [Wednesday| September 21st, 2022]</h>
+      </td>
+    </tr>
+
+    <tr>
+      <td><b>━━━━━━━༺Notes: "HTMLS, APIS +Arrays"༻━━━━━━━</b>
+        <br> * {NO NOTES}</br>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <pic>
+          <img src="https://steamuserimages-a.akamaihd.net/ugc/945094571616867748/680E4979CC75A2310664E0883F3F3FC6CBECA3BE/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false" alt="Image Not Found" width="350" height="250">
+      </td>
+      </pic>
+    <tr>
+
+      <tr style="background-color:#37393e;">
+        <td>
+          <h id="section4"><b>Week 04</b> [Wednesday| September 28th, 2022]</h>
+        </td>
+      </tr>
+      <tr>
+        <td><b>━━━━━━━༺Notes: "JQuery review + 1st presentation group"༻━━━━━━━</b>
+          <br> * Algorithmic Justice League</br>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <pic>
+            <img src="https://media1.giphy.com/media/husQkvgHIwrvpxD6P1/giphy.gif?cid=790b7611f52977c4d82e42b9a65315b0b71fc76caf54004b&rid=giphy.gif&ct=g" alt="Image Not Found" width="350" height="250">
+        </td>
+        </pic>
+      <tr>
+
+        <tr style="background-color:#37393e;">
+          <td>
+            <h id="section5"><b>Week 05</b> [Wednesday| October 5th, 2022]</h>
+          </td>
+        </tr>
+        <tr>
+          <td><b>━━━━━━━༺Notes: "JSON + AJX intro"༻━━━━━━━</b>
+            <br> * {NO NOTES}</br>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <pic>
+              <img src="https://steamuserimages-a.akamaihd.net/ugc/945094571616867748/680E4979CC75A2310664E0883F3F3FC6CBECA3BE/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false" alt="Image Not Found" width="350" height="250">
+          </td>
+          </pic>
+        <tr>
+
+          <tr style="background-color:#37393e;">
+            <td>
+              <h id="section6"><b>Week 06</b> [Wednesday| October 19th, 2022]</h>
+            </td>
+          </tr>
+          <tr>
+            <td><b>━━━━━━━༺Notes: "Presentation with teacher +PHP"༻━━━━━━━</b>
+              <br> * Mamal.io (refrence for project)</br>
+              <br> * r/place (refrence for project)</br>
+              <br> > note.js (javascript framework) - working together</br>
+              <br> Project: Draw>drawing becomes a future puzzle>Complete a daily puzzle based on someone's drawing (routine)</br>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <pic>
+                <img src="https://i.kym-cdn.com/photos/images/original/001/239/124/e46.gif" alt="Image Not Found" width="350" height="250">
+            </td>
+            </pic>
+          <tr>
+
+            <tr style="background-color:#37393e;">
+              <td>
+                <h id="section7"><b>Week 07</b> [Wednesday| October 26th, 2022]</h>
+              </td>
+            </tr>
+            <tr>
+              <td><b>━━━━━━━༺Notes:༻━━━━━━━</b>
+                <br> * {NO NOTES}</br>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <pic>
+                  <img src="https://steamuserimages-a.akamaihd.net/ugc/945094571616867748/680E4979CC75A2310664E0883F3F3FC6CBECA3BE/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false" alt="Image Not Found" width="350" height="250">
+              </td>
+              </pic>
+            <tr>
+
+              <tr style="background-color:#37393e;">
+                <td>
+                  <h id="section8"><b>Week 08</b> [Wednesday| November 2nd, 2022]</h>
+                </td>
+              </tr>
+              <tr>
+                <td><b>━━━━━━━༺Notes:༻━━━━━━━</b>
+                  <br> * {NO NOTES}</br>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <pic>
+                    <img src="https://steamuserimages-a.akamaihd.net/ugc/945094571616867748/680E4979CC75A2310664E0883F3F3FC6CBECA3BE/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false" alt="Image Not Found" width="350" height="250">
+                </td>
+                </pic>
+              <tr>
+
+
+
+    <script>
+      function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+      }
+
+      function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+      }
+    </script>
+
+</body>
+
+</html>
